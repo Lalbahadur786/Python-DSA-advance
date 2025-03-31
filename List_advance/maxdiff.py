@@ -6,5 +6,5 @@ def max_diff(arr):
         minval = min(minval, i)
     print(res)
 
-arr = [2, 8, 7, 6, 5]
+arr = [5, 10, 2 , 8, 13]
 max_diff(arr)
