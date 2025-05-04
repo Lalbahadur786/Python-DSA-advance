@@ -11,6 +11,7 @@ def is_possible(arr, n, k, ans):
         
         if curr_sum + arr[i] > ans:
             req_student += 1
+            curr_sum = arr[i] # assigning to the next student
         else:
             curr_sum += arr[i]
         if req_student > k:
