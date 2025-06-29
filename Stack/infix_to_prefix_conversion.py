@@ -1,7 +1,4 @@
-# Python program to convert infix expression to postfix
-
-# Class to convert the expression
-
+# Python program to convert infix expression to prefix
 
 class Conversion:
 
@@ -13,7 +10,7 @@ class Conversion:
 		self.array = []
 		# Precedence setting
 		self.output = []
-		self.precedence = {'+': 1, '-': 1, '*': 2, '/': 2, '^': 3}
+		self.precedence = {'+': 1, '-': 1, '*': 2, '/': 2, '^': 3, ')': 0}
 
 	# check if the stack is empty
 	def isEmpty(self):
@@ -47,17 +44,17 @@ class Conversion:
 		try:
 			a = self.precedence[i]
 			b = self.precedence[self.peek()]
-			return True if a <= b else False
+			return True if a < b else False
 		except KeyError:
 			return False
 
 	# The main function that
 	# converts given infix expression
 	# to postfix expression
-	def infixToPostfix(self, exp):
+	def infix_to_prefix(self, exp):
 
 		# Iterate over the expression for conversion
-		for i in exp:
+		for i in reversed(exp):
 			# If the character is an operand,
 			# add it to output
 			if self.isOperand(i):
@@ -89,13 +86,13 @@ class Conversion:
 		while not self.isEmpty():
 			self.output.append(self.pop())
 
-		print("".join(self.output))
+		print("".join(reversed(self.output)))
 
 
 # Driver's code
 if __name__ == '__main__':
-	exp = "a+b*(c^d-e)^(f+g*h)-i"
+	exp = "x+y/z-w*u"
 	obj = Conversion(len(exp))
 
 	# Function call
-	obj.infixToPostfix(exp)
+	obj.infix_to_prefix(exp)
